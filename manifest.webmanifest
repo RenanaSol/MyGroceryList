@@ -1,0 +1,13 @@
+{
+  "name": "קניות שלי",
+  "short_name": "קניות שלי",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f8f3",
+  "theme_color": "#376b50",
+  "description": "רשימת קניות אישית בעברית, מסודרת לפי קטגוריות",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

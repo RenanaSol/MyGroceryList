@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f8f3">
+  <meta name="description" content="קניות שלי – רשימת קניות מסודרת ונוחה לכל סיבוב בסופר.">
+  <title>קניות שלי · הרשימה החכמה</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-symbol" aria-hidden="true">✳</span>
+        <span>קניות <b>שלי.</b></span>
+      </div>
+      <div class="top-actions">
+        <span class="saved-note"><span class="saved-dot"></span> נשמר במכשיר הזה</span>
+        <button id="shareBtn" class="icon-button share-button" type="button" aria-label="שיתוף הרשימה" title="שיתוף הרשימה">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.3 10.8 7.4-4.5M8.3 13.2l7.4 4.5"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome" aria-labelledby="welcomeTitle">
+        <div class="welcome-copy">
+          <p class="eyebrow"><span class="eyebrow-mark">✦</span> עושים סדר בסל</p>
+          <h1 id="welcomeTitle">הסופר מתחיל<br><em>ברשימה טובה.</em></h1>
+          <p class="welcome-sub">כל מה שצריך לקנות, במקום אחד.<br>מוסיפים, מסמנים וממשיכים הלאה.</p>
+          <button id="jumpToAdd" class="primary-button hero-add" type="button"><span aria-hidden="true">＋</span> הוספת מוצר</button>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <span class="visual-ring ring-one"></span>
+          <span class="visual-ring ring-two"></span>
+          <div class="basket-card">
+            <div class="basket-top">✺ <span>Fresh picks</span></div>
+            <div class="grocery-art">
+              <span class="grocery-leafy">🥬</span><span class="grocery-bread">🥖</span><span class="grocery-berry">🍓</span><span class="grocery-orange">🍊</span>
+            </div>
+            <div class="basket-lines"><i></i><i></i><i></i></div>
+          </div>
+          <span class="decor-spark spark-one">✳</span><span class="decor-spark spark-two">✦</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="רשימת הקניות">
+        <div class="main-column">
+          <div class="section-heading">
+            <div><p class="overline">MY SHOPPING LIST</p><h2>הרשימה שלי <span class="heading-spark">✳</span></h2></div>
+            <span id="todayLabel" class="date-label"></span>
+          </div>
+
+          <div class="save-card">
+            <div><strong id="saveStatus" role="status" aria-live="polite">בודקת שמירה…</strong><p>כל שינוי נשמר אוטומטית. אפשר לסגור ולחזור באותו מכשיר ובאותו דפדפן. השמירה אינה מסתנכרנת למכשירים אחרים ונמחקת בניקוי נתוני האתר.</p></div>
+            <button id="saveList" class="quiet-button" type="button">שמירת הרשימה</button>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-text"><span class="progress-icon">✓</span><div><strong id="progressHeadline">מוכנה לקניות?</strong><p id="progressDescription">מוסיפים כמה מוצרים ומתחילים</p></div></div>
+            <div class="progress-right"><strong id="progressFraction">0/0</strong><span>בסל</span></div>
+            <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+          </div>
+
+          <form id="addForm" class="add-panel" autocomplete="off">
+            <label for="productInput" class="input-label">מה צריך לקנות?</label>
+            <div class="add-fields">
+              <div class="product-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><input id="productInput" type="text" placeholder="למשל, עגבניות שרי..." maxlength="70" required aria-label="שם המוצר"></div>
+              <button class="primary-button add-submit" type="submit">להוסיף <span>＋</span></button>
+            </div>
+            <div class="add-extras">
+              <div class="field-pair"><label for="quantityInput">כמות</label><input id="quantityInput" type="number" inputmode="decimal" min="0.1" step="0.1" value="1" aria-label="כמות"></div>
+              <div class="field-pair unit-pair"><label for="unitSelect">יחידה</label><select id="unitSelect" aria-label="יחידת מידה"><option value="יח׳">יח׳</option><option value="ק״ג">ק״ג</option><option value="גרם">גרם</option><option value="ליטר">ליטר</option><option value="חבילות">חבילות</option><option value="בקבוקים">בקבוקים</option></select></div>
+              <div class="field-pair category-pair"><label for="categorySelect">קטגוריה</label><select id="categorySelect" aria-label="קטגוריית המוצר"></select></div>
+            </div>
+          </form>
+
+          <section class="catalog-card" aria-labelledby="catalogTitle">
+            <div class="catalog-header">
+              <div><p class="overline">SHOPPING IDEAS</p><h3 id="catalogTitle">רעיונות לקנייה <span>✦</span></h3><p>לא בטוחה מה חסר בבית? בחרי קטגוריה והוסיפי בלחיצה.</p></div>
+              <div class="catalog-search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="catalogSearch" type="search" placeholder="חיפוש מוצר..." aria-label="חיפוש בהמלצות"></div>
+            </div>
+            <div id="catalogTabs" class="catalog-tabs" role="group" aria-label="קטגוריות המלצות"></div>
+            <div id="catalogProducts" class="catalog-products"></div>
+            <p id="catalogHint" class="catalog-hint"></p>
+          </section>
+
+          <div class="list-toolbar">
+            <div class="status-tabs" role="group" aria-label="סינון לפי מצב"><button class="status-tab active" data-status="all" type="button">הכול <span id="allCount">0</span></button><button class="status-tab" data-status="remaining" type="button">לקנות</button><button class="status-tab" data-status="done" type="button">בסל</button></div>
+            <button id="moreButton" class="quiet-button more-button" type="button" aria-haspopup="true" aria-expanded="false">אפשרויות <span>⌄</span></button>
+            <div id="moreMenu" class="more-menu" hidden><button id="resetChecked" type="button">להחזיר את הכול לרשימה</button><button id="clearChecked" type="button">למחוק מוצרים שכבר בסל</button><button id="clearAll" class="danger-option" type="button">למחוק את כל הרשימה</button></div>
+          </div>
+
+          <div id="categoryFilters" class="category-filters" aria-label="סינון לפי קטגוריה"></div>
+          <div id="shoppingItems" class="shopping-items" aria-live="polite"></div>
+          <div id="emptyState" class="empty-state" hidden><div class="empty-illustration">🧺<span>✦</span></div><h3 id="emptyTitle">הרשימה עדיין ריקה</h3><p id="emptyDescription">הוסיפי את המוצר הראשון שלך למעלה, או בחרי מהרעיונות למטה.</p></div>
+        </div>
+
+        <aside class="side-column" aria-label="קיצורי דרך">
+          <div class="side-card favorites-card">
+            <div class="aside-heading"><span class="little-icon heart-icon">♥</span><h3>הקבועים שלי</h3></div>
+            <p>סמני ☆ ליד מוצר כדי לשמור אותו כאן לפעם הבאה.</p>
+            <div id="favoritesList" class="favorites-list"></div>
+          </div>
+          <div class="tip-card"><span>💡</span><p><b>טיפ קטן</b><br>לחצי על העיגול ליד מוצר כדי לסמן שהוא כבר נכנס לעגלה.</p></div>
+        </aside>
+      </section>
+    </main>
+    <footer><span>נבנה במיוחד בשביל רגעים קטנים של סדר ♡</span><span>קניות שלי © 2026</span></footer>
+  </div>
+
+  <dialog id="editDialog" class="edit-dialog" aria-labelledby="editTitle">
+    <form id="editForm" class="dialog-content">
+      <div class="dialog-heading"><div><p class="overline">EDIT ITEM</p><h2 id="editTitle">עריכת מוצר</h2></div><button id="closeDialog" class="icon-button" type="button" aria-label="סגירה">×</button></div>
+      <label>שם המוצר<input id="editName" required maxlength="70" type="text"></label>
+      <div class="dialog-grid"><label>כמות<input id="editQuantity" required min="0.1" step="0.1" type="number"></label><label>יחידה<select id="editUnit"></select></label></div>
+      <label>קטגוריה<select id="editCategory"></select></label>
+      <div class="dialog-actions"><button id="cancelEdit" type="button" class="quiet-button">ביטול</button><button class="primary-button" type="submit">שמירת שינויים</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden><span id="toastMessage"></span><button id="toastUndo" type="button" hidden>ביטול פעולה</button></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
